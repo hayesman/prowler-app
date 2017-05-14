@@ -1,0 +1,104 @@
+<script>
+
+</script>
+<ion-view>
+    <ion-side-menus enable-menu-with-back-views="false">
+    <ion-side-menu-content>
+        <!-- .deepblue-theme .bar.bar-deepblue  -->
+    <ion-nav-bar class="bar-dark" style="background-color:rgba(0,0,0,0.5)">
+   
+      <ion-nav-buttons side="left">
+                  <button class="button button-icon button-clear ion-navicon-round" menu-toggle="left">
+              </button>
+
+      </ion-nav-buttons>
+      <ion-nav-buttons side="right">
+
+                  <!-- <img ng-src="img/all-icon.png" width="30" height="30" ng-click="setPub('')"> -->
+                 <!--  <a ng-repeat="pub in publications" > 
+                  <img src={{pub.logo}} width="30" height="30" ng-click="setPub({{pub.id}})" >
+                  </a> -->
+                  <button type="submit" ng-click="setPub('')" > 
+                    <div>
+                  <img ng-src="img/all-icon.png" width="30" height="30" style="{{setPubIconColor('allPubs')}}">
+                  </button>
+
+                  <button type="submit" ng-repeat="pub in publications" ng-click="setPub({{pub.id}})" > 
+                  <img src={{pub.logo}} width="30" height="30" style="{{setPubIconColor(pub.id)}}"  >
+                  </button>
+      </ion-nav-buttons>
+      
+      </ion-nav-bar>
+      <ion-subheader-bar class="bar bar-subheader" style="height:65px; background-color:rgba(0,0,0,0.5)">
+     <div class="item item-input" ng-controller="ArticlesController">
+         <i class="icon ion-search placeholder-icon"></i>
+         <input type="text"
+         placeholder="Search"
+         ng-model="myQuery"
+         ng-change='searchArticles()' 
+         ng-model-options="{ debounce: 700 }"/>
+       </div>
+      </ion-subheader-bar>
+
+    <ion-content>
+    <!-- deepblue-theme bar bar-deepblue  -->
+          <body ng-app="articlesApp">
+<!--               <img src="img/prince-icon.png" width="40" height="40">
+              <img src="img/nass-circle.png" width="37" height="37"> -->
+        <br><br><br>
+            
+              <ion-refresher
+                pulling-text="LOADING"
+                on-refresh="doRefresh()">
+              </ion-refresher>
+
+                      <a ng-repeat="article in articles" ng-href="#/articles/{{article.id}}" class="item item-thumbnail-left"
+                     <img src="{{getPubIcon(article.images[0])}}"/> 
+                      <img src="{{getThumbnail(article)}}" width="40" height="40" />
+                    <!--  <img src="{{article.images[0]}}" width="40" height="40" /> -->
+                      <div style="font-family:garamond;"> 
+                      <b> {{article.title}} </b> 
+                      <p> by {{article.author}} {{article.date.split("T")[0]}} </p>
+                      <p> {{getPubName(article.publication)}} </p>
+                      </div>
+                      </a>
+
+
+
+              <!-- <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+                 <ion-infinite-scroll-content></ion-infinite-scroll-content>
+              </ion-infinite-scroll> -->
+
+
+                </body>
+              </ion-content>
+       </ion-side-menu-content>
+  
+      <ion-side-menu side="left">
+        <ion-content>
+
+          <ion-list>
+          <font style="font-family:garamond;"> 
+            <ion-item ng-click="articlesHome()" menu-close> 
+                <div style="{{getTopicStyle('home')}}">
+                Home
+                </div> 
+            </ion-item>
+
+            <ion-item ng-repeat="topic in topics" ng-click="setArticlesTopic({{topic.id}})" menu-close>
+                <div style="{{getTopicStyle(topic.id)}}">
+                {{topic.name}}
+                </div>
+            </ion-item> 
+          </font>
+          </ion-list>
+
+        </ion-content>
+      </ion-side-menu>
+      </ion-side-menus>  
+</ion-view>
+
+
+
+
+     

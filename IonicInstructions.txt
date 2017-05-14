@@ -1,0 +1,15 @@
+Instructions:
+
+To create a new app:
+
+ionic start (NAME)
+
+To build and run:
+
+ionic serve (in appropriate directory)
+
+OR
+
+
+ionic build ios
+ionic run ios/android/browser

@@ -1,0 +1,23 @@
+.bar-header{
+	height: 50px;
+	background:black;
+}
+
+.bar-dark{
+	height: 50px;
+	background:black;
+}
+/* Empty. Add your own CSS if you like */
+
+.title.title-center.header-item {
+    background-color: black;
+    margin: 0px;
+}
+
+.bar.bar-subheader{
+	background-color:rgba(0,0,0,1);
+}
+
+.item.item-thumbnail-left{
+	
+}

@@ -1,0 +1,11 @@
+Useful info
+
+
+Here's a sample image in database:
+https://prowler333.herokuapp.com/images/article/932.json
+
+Convering wildlife amidst a billion people: challenges and solutions 
+by Jackson Artis
+
+This is what the json looks like:
+[{"id":22,"url":"http://s3.amazonaws.com/rapgenius/1381562736_borat.jpg","article":932}]

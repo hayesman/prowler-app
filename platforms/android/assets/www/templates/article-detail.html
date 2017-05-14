@@ -1,0 +1,46 @@
+
+
+<ion-view >
+ <ion-header-bar class="bar bar-header" style="background-color:rgba(0,0,0,0.5)">
+ <button type="button"> 
+   <a class="icon ion-chevron-left" href="#/articles" style="font-size:150%; color:white;"></a>
+   
+    
+ 
+   </button>
+
+ </ion-header-bar>
+<ion-content class="padding">
+
+<div style="font-family:garamond;" > {{getPubIcon(articleDetail.article.publication)}} </div>
+
+    <div style="font-family:garamond;"> 
+    Posted {{articleDetail.article.date.split("T")[0]}}<br></div>
+    <hr>
+    <div style="font-family:garamond;" align = "middle">
+
+    <font size = "+2.5" ><b>{{ articleDetail.article.title }}</b> <br> <br></font>
+
+    </div>
+   <!--  <p> By {{articleDetail.article.publication}} </p> -->
+        <div align="middle">
+        <!-- <img  src={{articleDetail.articlePic.url}} style="max-width:100%;height:auto;" width="640" > -->
+        <img  src={{articleDetail.article.images[0]}} alt="" style="max-width:100%;height:auto;">
+    </div>
+    	<div style="font-family:garamond;font-size:100%;" class="uppercase"  align = "middle">
+      <b> BY {{articleDetail.article.author.toUpperCase()}}      </b>
+   
+
+    	</div>
+      <hr width="40%">
+        <pre style="font-family:garamond;text-align:auto;font-size:110%;" class="white-space: pre-wrap;">
+  
+        <!-- {{articleDetail.articleBody.replace(" \n ", "").replace(" \n ", "")}} -->
+        {{getArticleBody(articleDetail.articleBody)}} 
+      	</pre>   
+<hr>
+<div style="font-family:garamond;" align="middle" >
+         <a ng-href="{{articleDetail.article.url}}">Article Source</a>
+    </div>
+    </ion-content>
+</ion-view>

@@ -1,0 +1,91 @@
+<style>
+img {
+
+}
+</style>
+<ion-view>
+    <ion-side-menus enable-menu-with-back-views="false">
+    <ion-side-menu-content>
+    <ion-nav-bar>
+      <ion-nav-buttons side="left">
+                  <button class="button button-icon button-clear ion-navicon-round" style="color:white" menu-toggle="left">
+              </button>
+      
+
+      </ion-nav-buttons>
+      <!-- <ion-title style="color:white"> HEI </ion-title> -->
+
+     <ion-nav-buttons side="right">
+              <div class="item item-input"  style="height:35px ">
+                  <i class="icon ion-search placeholder-icon" ></i>
+                  <input type="text"
+                  placeholder="Search"
+                  ng-model="myQuery" ng-change='searchArticles(myQuery)'ng-model-options="{ debounce: 700 }"/>
+                </div>
+      </ion-nav-buttons>
+      <ion-title style="color:white">Title</ion-title>
+      </ion-nav-bar>
+
+      <ion-subheader-bar class="bar bar-subheader" >
+       <ion-scroll direction="x" overflow-scroll="false" style="white-space: nowrap; background-color: black; "> 
+             <button class="button-clear" ng-click="setPub('')" > 
+                  <font style="font-family:garamond; color:white;">
+                  <div style="{{setPubIconColor('allPubs')}}">  <b> ALL <b> </div>
+               <!--   <img src={{pub.logo}} width="30" height="30" style="{{setPubIconColor(pub.id)}}"  > -->
+                 </font>
+             </button>
+             <button class="button-clear"  ng-repeat="pub in publications" ng-click="setPub({{pub.id}})" > 
+              <font style="font-family:garamond; color:white;">
+              <div style="{{setPubIconColor(pub.id)}}">  <b> &nbsp {{pub.name.toUpperCase()}} <b> </div>
+           <!--   <img src={{pub.logo}} width="30" height="30" style="{{setPubIconColor(pub.id)}}"  > -->
+             </font>
+            
+        </button>
+      </ion-scroll>
+      </ion-subheader-bar>
+
+    <ion-content on-scroll-complete="checkScroll()">
+    <!-- deepblue-theme bar bar-deepblue  -->
+          <body ng-app="articlesApp">
+            <br><br> <br><br>     
+                    <ion-list>
+                      <ion-item ng-repeat="article in articles" href="#/articles/{{article.id}}"  class="item-thumbnail-left item-text-wrap"
+img src="{{getPubIcon(article.images[0])}}"/> 
+                      <img  style="background-image:url({{getThumbnail(article)}})" class = "img-cover" width="40" height="40" />
+                      <div style="font-family:garamond;width:100%; overflow:visible; word-wrap: break-word; "> 
+                      <b> {{article.title}} </b>
+                      <p> by {{article.author}} {{article.date.split("T")[0]}} </p>
+                      <p> {{getPubName(article.publication)}} </p>
+                      </div>
+                      </ion-item>
+                    </ion-list>
+                      <ion-infinite-scroll ng-if="!noMoreItemsAvailable" on-infinite="loadMore()" distance="1%" ></ion-infinite-scroll>
+
+                </body>
+              </ion-content>
+       </ion-side-menu-content>
+  
+      <ion-side-menu side="left" style="background-color:black">
+        <ion-content>
+
+          <ion-list>
+          <font style="font-family:garamond;"> 
+            <ion-item menu-close style="font-family:garamond; color:white;{{getTopicStyle('home')}}" ng-click="articlesHome()"> 
+                HOME
+            </ion-item>
+
+            <ion-item menu-close style="font-family:garamond; color:white;{{getTopicStyle(topic.id)}}" ng-repeat="topic in topics" ng-click="setArticlesTopic({{topic.id}})">
+                {{topic.name.toUpperCase()}}
+            </ion-item> 
+          </font>
+          </ion-list>
+
+        </ion-content>
+      </ion-side-menu>
+      </ion-side-menus>  
+</ion-view>
+
+
+
+
+     
